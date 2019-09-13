@@ -1,0 +1,44 @@
+service: blob2anypointmq2
+
+
+provider:
+  name: azure
+  location: North Europe
+  environment:
+    blob2anypointmq_STORAGE: DefaultEndpointsProtocol=https;AccountName=blob2anypointmq;AccountKey=yt9ZHjlazq9evWbZsjYUWUFGCe0dYqBUoMCGm4JbKrfhFOQ7dOxKVe9/Obar7PVfniQVf9Oqc1JWDVWTA7jaNA==
+    credentialsURL: https://blob2anypointmq2.azurewebsites.net/api/credentials?code=fvbJHqFa/55g7VOtR3V40LnrtaaCF3RfFejSM7bLMM/hyuwOQBzHmw==
+
+plugins:
+  - serverless-azure-functions
+
+# you can add packaging information here
+package:
+  #  include:
+  #    - include-me.js
+  #    - include-me-dir/**
+  exclude:
+    #    - exclude-me.js
+    #    - exclude-me-dir/**
+    - local.settings.json
+    - .vscode/**
+
+functions:
+  main:
+    handler: main.handler
+    events:
+      - blob:
+        x-azure-settings:
+          name: file
+          path: blobs/{name}
+          connection: blob2anypointmq_STORAGE
+  credentials:
+    handler: credentials.handler
+    events:
+      - http: true
+        x-azure-settings:
+          name: req
+          methods: 
+            - get
+          route: credentials
+          authLevel: function  
+                      

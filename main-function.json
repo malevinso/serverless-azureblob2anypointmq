@@ -1,0 +1,14 @@
+{
+    "disabled": false,
+    "bindings": [
+        {
+            "type": "blobTrigger",
+            "direction": "in",
+            "name": "file",
+            "path": "blobs/{name}",
+            "connection": "blob2anypointmq_STORAGE"
+        }
+    ],
+    "entryPoint": "handler",
+    "scriptFile": "main.js"
+}
