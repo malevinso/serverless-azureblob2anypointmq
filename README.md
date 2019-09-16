@@ -2,6 +2,9 @@
 
 
 #### To send upload a file inside Azure and make this information be delivered at AnypointMQ
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
+  - Serverless Framework
+  - Azure Functions
+  - Azure Redis Caching
+  - AnypointMQ
+
+#### To execute, follow the same as in https://github.com/deanx/azureblob2anypointmq
